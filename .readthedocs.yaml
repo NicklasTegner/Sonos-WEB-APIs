@@ -9,7 +9,7 @@ build:
 sphinx:
   configuration: docs/source/conf.py
   
-  python:
+python:
   version: 3.9
   install:
     - method: pip

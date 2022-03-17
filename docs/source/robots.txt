@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: https://sonoscloud.rtd.org/sitemap.xml

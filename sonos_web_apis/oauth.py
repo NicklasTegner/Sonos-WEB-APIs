@@ -4,7 +4,11 @@ import string
 
 import requests
 
-from .exceptions import SonosBadRequestException, SonosException, SonosNotAUthorizedException, SonosUnauthorizedRequestException, SonosUnexpectedApiException
+from .exceptions import SonosBadRequestException
+from .exceptions import SonosException
+from .exceptions import SonosNotAUthorizedException
+from .exceptions import SonosUnauthorizedRequestException
+from .exceptions import SonosUnexpectedApiException
 from .utils import API_URLS
 
 class Oauth:
@@ -107,4 +111,3 @@ class Oauth:
         else:
             raise SonosUnexpectedApiException("{0:\n{1}".format(result.status_code, result.json()))
             return False
-

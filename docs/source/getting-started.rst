@@ -30,4 +30,3 @@ You can install this module from GitHub as well::
     git clone https://github.com/NicklasTegner/Sonos-WEB-APIs.git
     cd sonos-web-apis
     pip install .
-

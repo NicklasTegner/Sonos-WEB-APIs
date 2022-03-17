@@ -12,5 +12,3 @@ Welcome to Sonos WEB APIs's documentation!
    
    getting-started
    api
-
-

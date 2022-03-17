@@ -28,5 +28,3 @@ Types:
 
 
 .. automodule:: sonos_web_apis.types     
-
-

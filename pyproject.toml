@@ -7,7 +7,7 @@ license = "mit"
 readme = "readme.md"
 repository = "https://github.com/NicklasTegner/Sonos-WEB-APIs"
 homepage = "https://sonoswebapis.rtd.org"
-documentation = "https://sonoscloud.rtd.org"
+documentation = "https://sonos-web-apis.readthedocs.io/en/latest/"
 keywords = ["sonos", "sonos cloud", "sonos api", "soco"]
 classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules"

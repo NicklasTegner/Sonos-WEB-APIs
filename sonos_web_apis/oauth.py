@@ -4,7 +4,7 @@ import string
 
 import requests
 
-from sonos_cloud.exceptions import SonosBadRequestException, SonosException, SonosNotAUthorizedException, SonosUnauthorizedRequestException, SonosUnexpectedApiException
+from .exceptions import SonosBadRequestException, SonosException, SonosNotAUthorizedException, SonosUnauthorizedRequestException, SonosUnexpectedApiException
 from .utils import API_URLS
 
 class Oauth:

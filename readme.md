@@ -6,5 +6,5 @@
 A (Work in progress) python wrapper around the Sonos Cloud/WEB APIs.
 
 
-### {DOCUMENTATION}(https://sonos-web-apis.readthedocs.io/en/latest/)
+### [DOCUMENTATION](https://sonos-web-apis.readthedocs.io/en/latest/)
 

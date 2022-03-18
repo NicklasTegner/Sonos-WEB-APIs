@@ -11,6 +11,9 @@ from .exceptions import SonosUnauthorizedRequestException
 from .exceptions import SonosUnexpectedApiException
 from .utils import API_URLS
 
+_access_token_info = None
+_oauth_class = None
+
 class Oauth:
     """This is the authorization class for the Sonos Cloud APIs."""
     
@@ -29,7 +32,6 @@ class Oauth:
         self.redirect_uri = redirect_uri
         self._state = None
         self.authorized = False
-        self._access_token_info = None
     
     def get_oauth_url(self) -> str:
         """Get the sonos authorization url with scopes, state and your parameters formatted. This is what you'll redirect your users to, for them to authorize your application.
@@ -54,6 +56,7 @@ class Oauth:
         Returns:
             authorized (bool): True if the retrival of an access token was successful, False otherwise.
         """
+        global _access_token_info, _oauth_class
         client_id_plus_secret = self.client_id+":"+self.client_secret
         result = requests.post(API_URLS.ACCESS_TOKEN_URL, headers={
             "Content-Type": "application/x-www-form-urlencoded",
@@ -71,7 +74,8 @@ class Oauth:
         if result.status_code == 401:
             raise SonosUnauthorizedRequestException("invalid_request")
         if result.status_code == 200: # success
-            self._access_token_info = result.json()
+            _access_token_info = result.json()
+            _oauth_class = self
             self.authorize = True
             return True
         else:
@@ -89,6 +93,7 @@ class Oauth:
         Returns:
             authorized (bool): True if the retrival of an access token was successful, False otherwise.
         """
+        global _access_token_info
         client_id_plus_secret = self.client_id+":"+self.client_secret
         if not self.authorize:
             raise SonosNotAUthorizedException("The library is not authorized yet.")
@@ -98,14 +103,14 @@ class Oauth:
 		"Authorization": "Basic " + base64.b64encode(client_id_plus_secret.encode("ascii")).decode("ascii")
 	},data={
 		"grant_type": "refresh_token",
-		"refresh_token": self._access_token_info["refresh_token"]
+		"refresh_token": _access_token_info["refresh_token"]
 	})
         if result.status_code == 400:
             raise SonosBadRequestException(result.json()["message"])
         if result.status_code == 401:
             raise SonosUnauthorizedRequestException("invalid_request")
         if result.status_code == 200:
-            self._access_token_info = result.json()
+            _access_token_info = result.json()
             self.authorize = True
             return True
         else:
